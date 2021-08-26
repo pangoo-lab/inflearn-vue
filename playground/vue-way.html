@@ -13,15 +13,26 @@
         var div = document.querySelector('#app');
         var viewModel = {};
 
-        Object.defineProperty(viewModel, 'str', {
-            get: function() {
-                console.log('accessed');
-            },
-            set: function(newValue) {
-                console.log('allocated');
-                div.innerHTML = newValue;
+        (function() {
+            function init() {
+                Object.defineProperty(viewModel, 'str', {
+                    get: function() {
+                        console.log('accessed');
+                    },
+                    set: function(newValue) {
+                        console.log('allocated');
+                        render(newValue);
+                    }
+                });
             }
-        });
+
+            function render(value) {
+                div.innerHTML = value;
+            }
+
+            init();
+        })();
+        
     </script>
 </body>
 </html>
